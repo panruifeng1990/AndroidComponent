@@ -1,14 +1,28 @@
-## DDComponent
+## JIMU
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/luojilab/DDComponentForAndroid/pulls)
 [![License](https://img.shields.io/badge/License-Apache%202.0-orange.svg)](https://github.com/luojilab/DDComponentForAndroid/blob/master/LICENSE) 
 
+### 项目介绍
+JIMU（积木）是一套Android组件化框架，支持组件的代码资源隔离、单独调试、集成调试、组件交互、UI跳转、生命周期等完整功能。
+
+取名为JIMU（积木），其含义是应用这套框架可以做到组件之间的完全隔离，每个组件可以单独运行，同时又可以通过“接口”任意拼接成一个完成APP，这种能力就是我们实施组件化的最终目的。
+
 ### 最新版本
+
+[release-note&change-logs](https://github.com/mqzhangw/JIMU/releases) 关注版本变更以及注意事项是个好习惯。
 
 模块|build-gradle|componentlib|router-anno-compiler|router-annotation
 ---|---|---|---|---
 最新版本|[![Download](https://api.bintray.com/packages/zhmqq0527/compbuild/build-gradle/images/download.svg)](https://bintray.com/zhmqq0527/compbuild/build-gradle/_latestVersion)|[![Download](https://api.bintray.com/packages/zhmqq0527/compbuild/componentlib/images/download.svg)](https://bintray.com/zhmqq0527/compbuild/componentlib/_latestVersion)|[![Download](https://api.bintray.com/packages/zhmqq0527/compbuild/router-anno-compiler/images/download.svg)](https://bintray.com/zhmqq0527/compbuild/router-anno-compiler/_latestVersion)|[![Download](https://api.bintray.com/packages/zhmqq0527/compbuild/router-annotation/images/download.svg)](https://bintray.com/zhmqq0527/compbuild/router-annotation/_latestVersion)
 
+仓库2：
+
+模块|build-gradle|componentlib|router-anno-compiler|router-annotation
+---|---|---|---|---
+最新版本|[![Download](https://api.bintray.com/packages/leobert-lan-oss/maven/build-gradle/images/download.svg)](https://api.bintray.com/packages/leobert-lan-oss/maven/build-gradle/_latestVersion)|[![Download](https://api.bintray.com/packages/leobert-lan-oss/maven/componentlib/images/download.svg)](https://bintray.com/leobert-lan-oss/maven/componentlib/_latestVersion)|[![Download](https://api.bintray.com/packages/leobert-lan-oss/maven/router-anno-compiler/images/download.svg)](https://bintray.com/leobert-lan-oss/maven/router-anno-compiler/_latestVersion)|[![Download](https://api.bintray.com/packages/leobert-lan-oss/maven/router-annotation/images/download.svg)](https://bintray.com/leobert-lan-oss/maven/router-annotation/_latestVersion)
+
+*因为没有创建组织账号，可能会发布到不同的仓库，出现版本差异时请关注下release-note*
 
 ### 实现功能：
 - 组件可以单独调试
@@ -42,15 +56,16 @@ mainmodulename=app
 ```gradle
 buildscript {
     dependencies {
-        classpath 'com.luojilab.ddcomponent:build-gradle:1.2.0'
+        classpath 'com.github.jimu:build-gradle:A.B.C'
     }
 }
 ```
+*current lastest version 1.3.2 has just post a request to includeed in the bintray's jCenter,maybe you cannot fetch it before the request has been approved*
 
 为每个组件引入依赖库，如果项目中存在basiclib等基础库，可以统一交给basiclib引入
 
 ```gradle
-compile 'com.luojilab.ddcomponent:componentlib:1.3.0'
+compile 'com.github.jimu:componentlib:A.B.C'
 ```
 
 #### 2、拆分组件为module工程
@@ -89,32 +104,19 @@ combuild {
   <methods>;
 }
 -keep class com.luojilab.component.componentlib.** {*;}
--keep class com.luojilab.router.** {*;}
--keep class com.luojilab.gen.** {*;}
+-keep class com.luojilab.gen.router.** {*;}
 -keep class * implements com.luojilab.component.componentlib.router.ISyringe {*;}
 -keep class * implements com.luojilab.component.componentlib.applicationlike.IApplicationLike {*;}
-```
 
-关于如何进行组件之间数据交互和UI跳转，请参看 [Wiki](https://github.com/luojilab/DDComponentForAndroid/wiki)
+```
+*注意：com.luojilab.component.componentlib和com.luojilab.gen.router包可能在项目迁移的过程中发生过或即将发生变化，文档更新不一定及时，请手工确认一下生成类的包路径。*
+
+关于如何进行组件之间数据交互和UI跳转，请参看 [Wiki](https://github.com/mqzhangw/JIMU/wiki)
+关于消息中间件，请参考[v1.3.3releaseNote](https://github.com/mqzhangw/JIMU/releases/tag/v1.3.3)
 
 
 ### 组件化讨论群
-DDComponent的讨论群，群号693097923，欢迎大家加入：
+JIMU的讨论群，群号693097923，欢迎大家加入：
 
-![进群请扫码](http://upload-images.jianshu.io/upload_images/6650461-45da9dd9dc2a79b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![进群请扫码](https://upload-images.jianshu.io/upload_images/6650461-6adc3ed96ebd8d70.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-### License
-
-   Copyright 2017  Luojilab
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
